@@ -32,6 +32,19 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
         this.setLocation(222, 222);
     }
     
+    private void initSourceAddress() throws SocketException {
+        Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
+        for (NetworkInterface netint : Collections.list(nets)) {
+            Enumeration<InetAddress> inetAddresses = netint.getInetAddresses();
+            for (InetAddress addr : Collections.list(inetAddresses)) {
+                if (addr instanceof java.net.Inet4Address) {
+                    CB_srcAddresses.addItem((Object) addr.getHostAddress());
+                }
+            }
+        }
+        CB_srcAddresses.setSelectedItem("127.0.0.1");
+    }    
+    
     public void btnStart() {
         try {
             InetSocketAddress srcaddr = new InetSocketAddress(CB_srcAddresses.getSelectedItem().toString(), 0);
@@ -204,16 +217,4 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
     public static javax.swing.JToggleButton jtb;
     // End of variables declaration//GEN-END:variables
 
-    private void initSourceAddress() throws SocketException {
-        Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
-        for (NetworkInterface netint : Collections.list(nets)) {
-            Enumeration<InetAddress> inetAddresses = netint.getInetAddresses();
-            for (InetAddress addr : Collections.list(inetAddresses)) {
-                if (addr instanceof java.net.Inet4Address) {
-                    CB_srcAddresses.addItem((Object) addr.getHostAddress());
-                }
-            }
-        }
-        CB_srcAddresses.setSelectedItem("127.0.0.1");
-    }
 }
