@@ -15,7 +15,7 @@
     
     <build>
         
-        <finalName>udp-packet-generator</finalName>
+        <finalName>udp-flood</finalName>
 
         <plugins>
             
