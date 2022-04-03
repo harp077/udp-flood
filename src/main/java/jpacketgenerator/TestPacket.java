@@ -23,9 +23,9 @@ public class TestPacket implements Serializable {
         initPacket(pktLen, false);
     }
 
-    private TestPacket(int pktLen, boolean fTest) {
+    /*private TestPacket(int pktLen, boolean fTest) {
         initPacket(pktLen, true);
-    }
+    }*/
 
     private void initPacket(int pktLen, boolean fTest) {
         synchronized (serialLock) {
@@ -38,10 +38,10 @@ public class TestPacket implements Serializable {
         }
     }
 
-    static public int estimatePktLenght(int dataSize) {
+    /*static public int estimatePktLenght(int dataSize) {
         TestPacket test = new TestPacket(dataSize, true);
         return test.serialize().length;
-    }
+    }*/
 
     public byte[] serialize() {
         ByteArrayOutputStream fos = new ByteArrayOutputStream();
@@ -56,7 +56,7 @@ public class TestPacket implements Serializable {
         return fos.toByteArray();
     }
 
-    public static TestPacket fromDatagramPacket(DatagramPacket dpPkt) throws IOException {
+    /*public static TestPacket fromDatagramPacket(DatagramPacket dpPkt) throws IOException {
         ByteArrayInputStream bais = new ByteArrayInputStream(dpPkt.getData());
         ObjectInputStream ois = new ObjectInputStream(bais);
         TestPacket testPacket = null;
@@ -67,6 +67,6 @@ public class TestPacket implements Serializable {
         }
         ois.close();
         return testPacket;
-    }
+    }*/
     
 }
