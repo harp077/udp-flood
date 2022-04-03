@@ -1,5 +1,6 @@
 package jpacketgenerator;
 
+import java.awt.event.ItemEvent;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
@@ -8,6 +9,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -26,7 +28,30 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
         //--- Make buttons and stuff look less crappy - this also allows background coloring
         String laf = UIManager.getSystemLookAndFeelClassName();
         UIManager.setLookAndFeel(laf);
+        this.setSize(350, 200);
+        this.setLocation(222, 222);
     }
+    
+    public void btnStart() {
+        try {
+            InetSocketAddress srcaddr = new InetSocketAddress(CB_srcAddresses.getSelectedItem().toString(), 0);
+            InetSocketAddress dstaddr = new InetSocketAddress(TB_dtsAddress.getText(), new Integer(TB_dtsPort.getText()));
+            if (pGenerator != null) {
+                pGenerator.close();
+            }
+            pGenerator = new packetGenerator(srcaddr, dstaddr,
+                    (Integer) S_packetSize_KB.getValue(),
+                    ((Integer) S_streamSpeed.getValue()) * 1000);
+        } catch (SocketException ex) {
+            Logger.getLogger(packetGenerator.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }
+    
+    public void btnStop() {
+        if (pGenerator != null) {
+            pGenerator.close();
+        }
+    }    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,14 +61,13 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         TB_dtsAddress = new javax.swing.JTextField();
-        stopButton = new javax.swing.JButton();
-        startButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         TB_dtsPort = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         S_packetSize_KB = new javax.swing.JSpinner();
         S_streamSpeed = new javax.swing.JSpinner();
+        jtb = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pure Java UDP Packet Generator");
@@ -79,38 +103,6 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
         getContentPane().add(TB_dtsAddress);
         TB_dtsAddress.setBounds(130, 40, 100, 20);
 
-        stopButton.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        stopButton.setForeground(new java.awt.Color(204, 0, 0));
-        stopButton.setText("STOP");
-        stopButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                stopButtonMouseClicked(evt);
-            }
-        });
-        stopButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stopButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(stopButton);
-        stopButton.setBounds(300, 70, 77, 49);
-
-        startButton.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        startButton.setForeground(new java.awt.Color(0, 102, 51));
-        startButton.setText("START");
-        startButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                startButtonMouseClicked(evt);
-            }
-        });
-        startButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(startButton);
-        startButton.setBounds(300, 10, 77, 49);
-
         jLabel3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Packet Size (Bytes):");
@@ -145,44 +137,39 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
         getContentPane().add(S_streamSpeed);
         S_streamSpeed.setBounds(130, 100, 80, 18);
 
+        jtb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/get-16.png"))); // NOI18N
+        jtb.setText("Run");
+        jtb.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jtbItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(jtb);
+        jtb.setBounds(230, 90, 90, 26);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startButtonActionPerformed
-
-    private void startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startButtonMouseClicked
-        try {
-            InetSocketAddress srcaddr = new InetSocketAddress(CB_srcAddresses.getSelectedItem().toString(), 0);
-            InetSocketAddress dstaddr = new InetSocketAddress(TB_dtsAddress.getText(), new Integer(TB_dtsPort.getText()));
-            if (pGenerator != null) {
-                pGenerator.close();
-            }
-            pGenerator = new packetGenerator(srcaddr, dstaddr,
-                    (Integer) S_packetSize_KB.getValue(),
-                    ((Integer) S_streamSpeed.getValue()) * 1000);
-        } catch (SocketException ex) {
-            Logger.getLogger(packetGenerator.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_startButtonMouseClicked
-
-    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_stopButtonActionPerformed
-
-    private void stopButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopButtonMouseClicked
-        if (pGenerator != null) {
-            pGenerator.close();
-        }
-    }//GEN-LAST:event_stopButtonMouseClicked
 
     private void CB_srcAddressesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_srcAddressesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CB_srcAddressesActionPerformed
 
+    private void jtbItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jtbItemStateChanged
+        ImageIcon iconOn = new ImageIcon(getClass().getResource("/img/get-16.png"));
+        ImageIcon iconOf = new ImageIcon(getClass().getResource("/img/stop-16.png"));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            jtb.setText("Stop ");
+            jtb.setIcon(iconOf);
+            btnStart();
+        } else if (evt.getStateChange() == ItemEvent.DESELECTED) {
+            jtb.setText("Run ");
+            jtb.setIcon(iconOn);
+            btnStop();
+        }
+    }//GEN-LAST:event_jtbItemStateChanged
+
     public static void main(String args[]) {
-            /*try {
+        /*try {
                 for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                     if ("Metal".equals(info.getName())) {
                         javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -192,16 +179,16 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
                 java.util.logging.Logger.getLogger(JPacketGeneratorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }*/
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        new JPacketGeneratorGUI().setVisible(true);
-                    } catch (SocketException | UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-                        Logger.getLogger(JPacketGeneratorGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    new JPacketGeneratorGUI().setVisible(true);
+                } catch (SocketException | UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                    Logger.getLogger(JPacketGeneratorGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            });
+            }
+        });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CB_srcAddresses;
@@ -214,8 +201,7 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton startButton;
-    private javax.swing.JButton stopButton;
+    public static javax.swing.JToggleButton jtb;
     // End of variables declaration//GEN-END:variables
 
     private void initSourceAddress() throws SocketException {
