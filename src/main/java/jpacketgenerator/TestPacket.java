@@ -34,6 +34,7 @@ public class TestPacket implements Serializable {
             if (!fTest) {
                 currentSerialNumber++;
             }
+            // ??!! exception throw then packet < 127 !!!
             data = new byte[pktLen - 127];
         }
     }

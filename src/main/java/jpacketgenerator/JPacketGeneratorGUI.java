@@ -132,6 +132,7 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(270, 40, 10, 20);
 
+        S_packetSize_KB.setModel(new javax.swing.SpinnerNumberModel(1000, 127, 1500, 1));
         S_packetSize_KB.setValue(1000);
         getContentPane().add(S_packetSize_KB);
         S_packetSize_KB.setBounds(170, 70, 80, 20);

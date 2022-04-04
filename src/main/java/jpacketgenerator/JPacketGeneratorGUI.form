@@ -127,6 +127,9 @@
     </Component>
     <Component class="javax.swing.JSpinner" name="S_packetSize_KB">
       <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="1000" maximum="1500" minimum="127" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
         <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="1000" type="code"/>
         </Property>
