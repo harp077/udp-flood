@@ -103,9 +103,9 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
         jLabel1.setBounds(10, 10, 120, 20);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Dest. Address : Port: ");
+        jLabel2.setText("Dest. Address & Port: ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 40, 130, 20);
+        jLabel2.setBounds(10, 40, 140, 20);
 
         TB_dtsAddress.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         TB_dtsAddress.setText("127.0.0.1");
@@ -132,13 +132,13 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(270, 40, 10, 20);
 
-        S_packetSize_KB.setValue(999);
+        S_packetSize_KB.setValue(1000);
         getContentPane().add(S_packetSize_KB);
-        S_packetSize_KB.setBounds(170, 70, 80, 18);
+        S_packetSize_KB.setBounds(170, 70, 80, 20);
 
         S_streamSpeed.setValue(500);
         getContentPane().add(S_streamSpeed);
-        S_streamSpeed.setBounds(170, 100, 80, 18);
+        S_streamSpeed.setBounds(170, 100, 80, 20);
 
         jtb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/get-16.png"))); // NOI18N
         jtb.setText("Run");

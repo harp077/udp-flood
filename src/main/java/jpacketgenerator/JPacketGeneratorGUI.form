@@ -62,11 +62,11 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Dest. Address : Port: "/>
+        <Property name="text" type="java.lang.String" value="Dest. Address &amp; Port: "/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="40" width="130" height="20"/>
+          <AbsoluteConstraints x="10" y="40" width="140" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -128,7 +128,7 @@
     <Component class="javax.swing.JSpinner" name="S_packetSize_KB">
       <Properties>
         <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="999" type="code"/>
+          <Connection code="1000" type="code"/>
         </Property>
       </Properties>
       <Constraints>

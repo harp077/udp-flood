@@ -62,15 +62,15 @@ public class packetGenerator {
         return timePeriod;
     }
 
-    public synchronized void setPacketSize(Integer iPktSize) {
+    /*public synchronized void setPacketSize(Integer iPktSize) {
         this.requiredPktSize = iPktSize;
         restartStream();
-    }
+    }*/
 
-    public synchronized void setStreamSpeed(int speed) {
+    /*public synchronized void setStreamSpeed(int speed) {
         this.speed_bps = speed;
         restartStream();
-    }
+    }*/
 
     private DatagramPacket createNewPacket() {
         TestPacket testPkt = new TestPacket(requiredPktSize);
