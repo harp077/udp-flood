@@ -26,13 +26,13 @@ public class packetGenerator {
         requiredPktSize = packetSize;
         this.speed_bps = speed_bps;
         restartStream();
-        System.out.println("Packet generator: streaming!");
+        System.out.println("Packet generator: streaming !");
     }
 
     public synchronized void close() {
         stopExecutor();
         sock.close();
-        System.out.println("Packet generator: stopped!");
+        System.out.println("Packet generator: stopped !");
     }
 
     public final void restartStream() {
@@ -43,10 +43,10 @@ public class packetGenerator {
             //+2 generate packet mette 2 byte in +
             long timePeriod = evaluateTimePeriod(speed_bps, requiredPktSize);
             if (timePeriod > 0) {
-                System.out.println("Period Time:" + (Double) ((double) timePeriod / 1000000D) + " msec");
+                System.out.println("Period Time: " + (Double) ((double) timePeriod / 1000000D) + " msec");
                 executor.scheduleAtFixedRate(new packetGenerator.PacketSender(), 0, timePeriod, TimeUnit.NANOSECONDS);
             } else {
-                System.out.println("NOT VALID Period Time:" + (Double) ((double) timePeriod / 1000D) + " msec");
+                System.out.println("NOT VALID Period Time: " + (Double) ((double) timePeriod / 1000D) + " msec");
             }
         }
     }

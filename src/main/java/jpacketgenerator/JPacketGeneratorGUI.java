@@ -28,7 +28,7 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
         //--- Make buttons and stuff look less crappy - this also allows background coloring
         String laf = UIManager.getSystemLookAndFeelClassName();
         UIManager.setLookAndFeel(laf);
-        this.setSize(350, 200);
+        this.setSize(350, 220);
         this.setLocation(222, 222);
     }
     
@@ -42,7 +42,7 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
                 }
             }
         }
-        CB_srcAddresses.setSelectedItem("127.0.0.1");
+        //CB_srcAddresses.setSelectedItem("127.0.0.1");
     }    
     
     public void btnStart() {
@@ -83,72 +83,62 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
         jtb = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Pure Java UDP Packet Generator");
+        setTitle("UDP-flood utility");
         setPreferredSize(new java.awt.Dimension(405, 170));
         setSize(new java.awt.Dimension(405, 170));
         getContentPane().setLayout(null);
 
-        CB_srcAddresses.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         CB_srcAddresses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CB_srcAddressesActionPerformed(evt);
             }
         });
         getContentPane().add(CB_srcAddresses);
-        CB_srcAddresses.setBounds(130, 10, 160, 20);
+        CB_srcAddresses.setBounds(170, 10, 160, 20);
 
-        jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Source Address:");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("Source Address: ");
         jLabel1.setRequestFocusEnabled(false);
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 10, 100, 20);
+        jLabel1.setBounds(10, 10, 120, 20);
 
-        jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Dest. Address & Port:");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel2.setText("Dest. Address : Port: ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 40, 110, 20);
+        jLabel2.setBounds(10, 40, 130, 20);
 
-        TB_dtsAddress.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         TB_dtsAddress.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         TB_dtsAddress.setText("127.0.0.1");
         getContentPane().add(TB_dtsAddress);
-        TB_dtsAddress.setBounds(130, 40, 100, 20);
+        TB_dtsAddress.setBounds(170, 40, 100, 20);
 
-        jLabel3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Packet Size (Bytes):");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(10, 70, 110, 20);
+        jLabel3.setBounds(10, 70, 130, 20);
 
-        jLabel4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Stream Speed (Kbps):");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("Stream Speed (Kbps): ");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(10, 100, 110, 20);
+        jLabel4.setBounds(10, 100, 140, 20);
 
-        TB_dtsPort.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         TB_dtsPort.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         TB_dtsPort.setText("12345");
         getContentPane().add(TB_dtsPort);
-        TB_dtsPort.setBounds(240, 40, 50, 20);
+        TB_dtsPort.setBounds(280, 40, 50, 20);
 
-        jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText(":");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(230, 40, 10, 20);
+        jLabel5.setBounds(270, 40, 10, 20);
 
-        S_packetSize_KB.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        S_packetSize_KB.setValue(1324);
+        S_packetSize_KB.setValue(999);
         getContentPane().add(S_packetSize_KB);
-        S_packetSize_KB.setBounds(130, 70, 80, 18);
+        S_packetSize_KB.setBounds(170, 70, 80, 18);
 
-        S_streamSpeed.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         S_streamSpeed.setValue(500);
         getContentPane().add(S_streamSpeed);
-        S_streamSpeed.setBounds(130, 100, 80, 18);
+        S_streamSpeed.setBounds(170, 100, 80, 18);
 
         jtb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/get-16.png"))); // NOI18N
         jtb.setText("Run");
@@ -158,7 +148,7 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jtb);
-        jtb.setBounds(230, 90, 90, 26);
+        jtb.setBounds(150, 140, 90, 26);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
