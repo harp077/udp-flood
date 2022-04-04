@@ -18,7 +18,7 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 // changed = https://github.com/mathewbray/Java-PacketGenerator
 public class JPacketGeneratorGUI extends javax.swing.JFrame {
 
-    private packetGenerator pGenerator;
+    private PacketGenerator pGenerator;
 
     public JPacketGeneratorGUI() throws SocketException, UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         initComponents();
@@ -52,11 +52,11 @@ public class JPacketGeneratorGUI extends javax.swing.JFrame {
             if (pGenerator != null) {
                 pGenerator.close();
             }
-            pGenerator = new packetGenerator(srcaddr, dstaddr,
+            pGenerator = new PacketGenerator(srcaddr, dstaddr,
                     (Integer) S_packetSize_KB.getValue(),
                     ((Integer) S_streamSpeed.getValue()) * 1000);
         } catch (SocketException ex) {
-            Logger.getLogger(packetGenerator.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PacketGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }
     

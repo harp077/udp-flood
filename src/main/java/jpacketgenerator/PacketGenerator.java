@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class packetGenerator {
+public class PacketGenerator {
 
     private ScheduledExecutorService executor;
     private DatagramSocket sock;
@@ -20,7 +20,7 @@ public class packetGenerator {
     private int speed_bps;
     private Integer requiredPktSize;
 
-    public packetGenerator(InetSocketAddress scrAddress, InetSocketAddress destAddress, int packetSize, int speed_bps) throws SocketException {
+    public PacketGenerator(InetSocketAddress scrAddress, InetSocketAddress destAddress, int packetSize, int speed_bps) throws SocketException {
         sock = new DatagramSocket(scrAddress);
         this.dstAddress = destAddress;
         requiredPktSize = packetSize;
@@ -44,7 +44,7 @@ public class packetGenerator {
             long timePeriod = evaluateTimePeriod(speed_bps, requiredPktSize);
             if (timePeriod > 0) {
                 System.out.println("Period Time: " + (Double) ((double) timePeriod / 1000000D) + " msec");
-                executor.scheduleAtFixedRate(new packetGenerator.PacketSender(), 0, timePeriod, TimeUnit.NANOSECONDS);
+                executor.scheduleAtFixedRate(new PacketGenerator.PacketSender(), 0, timePeriod, TimeUnit.NANOSECONDS);
             } else {
                 System.out.println("NOT VALID Period Time: " + (Double) ((double) timePeriod / 1000D) + " msec");
             }
@@ -88,7 +88,7 @@ public class packetGenerator {
                 }
             } catch (Exception ex) {
                 if (!fClosing) {
-                    Logger.getLogger(packetGenerator.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PacketGenerator.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
